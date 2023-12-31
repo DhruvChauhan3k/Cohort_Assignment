@@ -41,7 +41,6 @@
       const deleted = [];
       const updated = [];
 
-      // Find added, deleted, and updated todos
       for (const newTodo of newTodos) {
         const oldTodo = oldTodoState.find(t => t.id === newTodo.id);
 
@@ -59,12 +58,10 @@
         }
       }
 
-      // Perform the necessary DOM operations
       added.forEach(addTodoToDom);
       deleted.forEach(removeTodoFromDom);
       updated.forEach(({ oldTodo, newTodo }) => updateTodoInDom(oldTodo, newTodo));
 
-      // Update the oldTodoState
       oldTodoState = newTodos;
     }
 
@@ -77,7 +74,7 @@
         id: globalId++,
       };
       todoState.push(newTodo);
-      updateState(todoState);
+      updateState([...todoState]); // Create a new array to trigger the updateState function
     }
   </script>
 </head>
